@@ -1,39 +1,34 @@
-import { createStore } from 'redux'
-
-export const INCREMENT = 'INCREMET'
-export const DECREMENT = 'DECREMENT'
-export const CHANGE = 'CHANGE'
+import { createSlice, configureStore } from '@reduxjs/toolkit'
 
 export const directionUp = 'UP'
 export const directionDown = 'DOWN'
 
-const counterReducer = (state = { counter: 0 }, action) => {
-  switch (action.type) {
-    case INCREMENT:
-      return {
-        counter: state.counter + 1,
-      }
-    case DECREMENT:
-      return {
-        counter: state.counter - 1,
-      }
-    case CHANGE:
+const counterSlice = createSlice({
+  name: "counter",
+  initialState: { counter: 0 },
+  reducers: {
+    increment(state) {
+      state.counter++
+    },
+    decrement(state) {
+      state.counter--
+    },
+    change(state, action) {
       if (action.payload.direction === directionUp) {
-        return {
-          counter: state.counter + action.payload.coeff,
-        }
+        state.counter = state.counter + action.payload.coeff
       }
       if (action.payload.direction === directionDown) {
-        return {
-          counter: state.counter - action.payload.coeff,
-        }
+        state.counter = state.counter - action.payload.coeff
       }
+    },
+  },
+})
 
-    default:
-      return state
-  }
-}
+export const { increment, decrement, change } = counterSlice.actions
 
-const store = createStore(counterReducer)
+const store = configureStore({
+    reducer: counterSlice.reducer
+}) 
 
 export default store
+

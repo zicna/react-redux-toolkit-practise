@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 
 import { useSelector, useDispatch } from 'react-redux'
-import { INCREMENT, DECREMENT, CHANGE } from '../store/index'
 import { directionDown, directionUp } from '../store/index'
+
+import { increment, decrement, change } from '../store/index'
 
 
 const Counter = () => {
@@ -14,27 +15,23 @@ const Counter = () => {
   const dispatch = useDispatch()
 
   const counterUpHandler = () => {
-    dispatch({ type: INCREMENT })
+    dispatch(increment())
   }
 
   const counterDownHandler = () => {
-    dispatch({ type: DECREMENT })
+    dispatch(decrement())
   }
 
   const coefficientChangeHandler = (event) => {
     setCoefficient(event.target.value)
   }
-
+// ! dispatching with payload
   const counterCoeffHandler = () => {
-    dispatch({
-      type: CHANGE,
-      payload: { direction, coeff: parseInt(coefficient) },
-    })
+    dispatch(change({ direction, coeff: parseInt(coefficient) })
+      )
   }
 
   const selectChangeHandler = (event) => {
-    // debugger
-
     setDirection(event.target.value)
   }
 

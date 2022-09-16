@@ -5,9 +5,32 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.counter{
+  border: 2px solid black;
+  min-width: 30rem;
+  min-height: 30rem;
+}
+
+button{
+  margin: 1rem;
+  padding: .2rem 1rem;
+  border-radius: 4px;
+}
+
+input{
+  width: 3rem;
+}
+select{
+  width: 5rem;
+  margin-right: .5rem;
 }
